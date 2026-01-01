@@ -1,12 +1,10 @@
 import { useState } from "react";
 import "./App.css";
+import addIcon from "./assets/plus.svg";
 import Information from "./components/Information.jsx";
 import Form from "./components/Form.jsx";
 
 function App() {
-  let nextEducationId = 0,
-    nextPracticalId = 0;
-
   const [information, setInformation] = useState({
     general: {
       Name: {
@@ -38,34 +36,42 @@ function App() {
   function handleSubmit(id, info) {
     setModalInfoId(null);
     setInformation({
-      ...Information,
-      [id]: info
-    })
+      ...information,
+      [id]: info,
+    });
   }
+
+  console.log(Object.entries(information));
 
   return (
     <>
       <h1>General Information</h1>
       <Information
         info={information["general"]}
-        onEdit={handleEdit}
+        onEdit={() => handleEdit("general")}
         id={"general"}
         key={"general"}
       />
       <hr />
       <h1>Educational Experience</h1>
       {Object.entries(information)
-        .filter((item) => item[0].startsWith("education"))
+        .filter((item) => item[0].startsWith("educational"))
         .map((item) => (
-          <Information info={item[1]} key={item[0]} />
+          <Information info={item[1]} onEdit={handleEdit} id={item[0]} key={item[0]} />
         ))}
+        <button onClick={() => setModalInfoId("educational" + crypto.randomUUID())}>
+          <img src={addIcon} alt="add" />
+        </button>
       <hr />
       <h1>Practical Experience</h1>
       {Object.entries(information)
         .filter((item) => item[0].startsWith("practical"))
         .map((item) => (
-          <Information info={item[1]} key={item[0]} />
+          <Information info={item[1]} onEdit={handleEdit} id={item[0]} key={item[0]} />
         ))}
+        <button onClick={() => setModalInfoId("practical" + crypto.randomUUID())}>
+          <img src={addIcon} alt="add" />
+        </button>
       <Form
         key={modalInfoId + "reset"}
         initialInfo={information[modalInfoId]}
