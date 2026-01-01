@@ -1,0 +1,27 @@
+#cv {
+  background-color: lightgrey;
+  max-width: 500px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: auto;
+  box-shadow: 5px 5px 10px;
+}
+
+.add {
+  background-color: skyblue;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px;
+  margin-top: 20px;
+}
+
+.add:hover {
+  background-color: lightblue;
+  box-shadow: 1px 1px 3px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

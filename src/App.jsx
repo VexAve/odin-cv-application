@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import Card from "./components/Card.jsx";
 import addIcon from "./assets/plus.svg";
 import Information from "./components/Information.jsx";
 import Form from "./components/Form.jsx";
@@ -29,7 +30,7 @@ function App() {
   }
 
   function handleDelete(id) {
-    setInformation(({ [id]: _, ...newInformation }) => newInformation)
+    setInformation(({ [id]: _, ...newInformation }) => newInformation);
   }
 
   function handleCancel() {
@@ -47,7 +48,7 @@ function App() {
   console.log(Object.entries(information));
 
   return (
-    <>
+    <div id="cv">
       <h1>General Information</h1>
       <Information
         info={information["general"]}
@@ -57,24 +58,46 @@ function App() {
       />
       <hr />
       <h1>Educational Experience</h1>
-      {Object.entries(information)
-        .filter((item) => item[0].startsWith("educational"))
-        .map((item) => (
-          <Information info={item[1]} onEdit={handleEdit} onDelete={handleDelete} id={item[0]} key={item[0]} />
-        ))}
-        <button onClick={() => setModalInfoId("educational" + crypto.randomUUID())}>
-          <img src={addIcon} alt="add" />
-        </button>
+      <div className="cards">
+        {Object.entries(information)
+          .filter((item) => item[0].startsWith("educational"))
+          .map((item) => (
+            <Card>
+              <Information
+                info={item[1]}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                id={item[0]}
+                key={item[0]}
+              />
+            </Card>
+          ))}
+      </div>
+      <button
+        onClick={() => setModalInfoId("educational" + crypto.randomUUID())}
+      >
+        <img className="add" src={addIcon} alt="add" />
+      </button>
       <hr />
       <h1>Practical Experience</h1>
-      {Object.entries(information)
-        .filter((item) => item[0].startsWith("practical"))
-        .map((item) => (
-          <Information info={item[1]} onEdit={handleEdit} onDelete={handleDelete} id={item[0]} key={item[0]} />
-        ))}
-        <button onClick={() => setModalInfoId("practical" + crypto.randomUUID())}>
-          <img src={addIcon} alt="add" />
-        </button>
+      <div className="cards">
+        {Object.entries(information)
+          .filter((item) => item[0].startsWith("practical"))
+          .map((item) => (
+            <Card>
+              <Information
+                info={item[1]}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                id={item[0]}
+                key={item[0]}
+              />
+            </Card>
+          ))}
+      </div>
+      <button onClick={() => setModalInfoId("practical" + crypto.randomUUID())}>
+        <img className="add" src={addIcon} alt="add" />
+      </button>
       <Form
         key={modalInfoId + "reset"}
         initialInfo={information[modalInfoId]}
@@ -82,7 +105,7 @@ function App() {
         onCancel={handleCancel}
         onSubmit={handleSubmit}
       />
-    </>
+    </div>
   );
 }
 

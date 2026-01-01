@@ -1,0 +1,15 @@
+button > img {
+  width: 25px;
+  height: auto;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+#edit-and-delete {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}

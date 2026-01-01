@@ -1,3 +1,4 @@
+import "../styles/Form.css";
 import { Fragment, useState } from "react";
 
 export default function Form({ initialInfo, id, onCancel, onSubmit }) {
@@ -52,38 +53,42 @@ export default function Form({ initialInfo, id, onCancel, onSubmit }) {
   return (
     <>
       {info ? (
-        <div>
-          {Object.entries(info).map(([name, { type, value }]) => {
-            const id = name.replace(" ", "-");
-            if (type === "text-area") {
-              return (
-                <Fragment key={id}>
-                  <label htmlFor={id}>{name}:</label>
-                  <textarea
-                    id={id}
-                    onChange={(e) => handleChange(e.target.value, name)}
-                    value={value}
-                  ></textarea>
-                </Fragment>
-              );
-            } else if (type === "date-range") {
-              return null;
-            } else {
-              return (
-                <Fragment key={id}>
-                  <label htmlFor={id}>{name}:</label>
-                  <input
-                    type={type}
-                    id={id}
-                    value={value}
-                    onChange={(e) => handleChange(e.target.value, name)}
-                  />
-                </Fragment>
-              );
-            }
-          })}
-          <button onClick={onCancel}>Cancel</button>
-          <button onClick={() => onSubmit(id, info)}>Submit</button>
+        <div id="backdrop">
+          <div id="form">
+            {Object.entries(info).map(([name, { type, value }]) => {
+              const id = name.replace(" ", "-");
+              if (type === "text-area") {
+                return (
+                  <Fragment key={id}>
+                    <label htmlFor={id}>{name}:</label>
+                    <textarea
+                      id={id}
+                      onChange={(e) => handleChange(e.target.value, name)}
+                      value={value}
+                    ></textarea>
+                  </Fragment>
+                );
+              } else if (type === "date-range") {
+                return null;
+              } else {
+                return (
+                  <Fragment key={id}>
+                    <label htmlFor={id}>{name}:</label>
+                    <input
+                      type={type}
+                      id={id}
+                      value={value}
+                      onChange={(e) => handleChange(e.target.value, name)}
+                    />
+                  </Fragment>
+                );
+              }
+            })}
+            <div id="form-btns">
+              <button onClick={onCancel}>Cancel</button>
+              <button onClick={() => onSubmit(id, info)}>Submit</button>
+            </div>
+          </div>
         </div>
       ) : null}
     </>

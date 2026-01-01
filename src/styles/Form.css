@@ -1,0 +1,44 @@
+#backdrop {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#form {
+  display: flex;
+  background-color: aliceblue;
+  padding: 20px;
+  flex-direction: column;
+  width: 400px;
+  margin: auto;
+  border: 2px solid black;
+}
+
+input, textarea {
+  margin-bottom: 15px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+#form-btns {
+  display: flex;
+  gap: 10px;
+}
+
+#form-btns > button {
+  background-color: skyblue;
+  border: 1px solid blue;
+  padding: 5px 10px;
+}
+
+#form-btns > button:hover {
+  background-color: lightblue;
+}
