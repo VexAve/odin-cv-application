@@ -26,7 +26,10 @@ function App() {
 
   function handleEdit(id) {
     setModalInfoId(id);
-    console.log(id);
+  }
+
+  function handleDelete(id) {
+    setInformation(({ [id]: _, ...newInformation }) => newInformation)
   }
 
   function handleCancel() {
@@ -57,7 +60,7 @@ function App() {
       {Object.entries(information)
         .filter((item) => item[0].startsWith("educational"))
         .map((item) => (
-          <Information info={item[1]} onEdit={handleEdit} id={item[0]} key={item[0]} />
+          <Information info={item[1]} onEdit={handleEdit} onDelete={handleDelete} id={item[0]} key={item[0]} />
         ))}
         <button onClick={() => setModalInfoId("educational" + crypto.randomUUID())}>
           <img src={addIcon} alt="add" />
@@ -67,7 +70,7 @@ function App() {
       {Object.entries(information)
         .filter((item) => item[0].startsWith("practical"))
         .map((item) => (
-          <Information info={item[1]} onEdit={handleEdit} id={item[0]} key={item[0]} />
+          <Information info={item[1]} onEdit={handleEdit} onDelete={handleDelete} id={item[0]} key={item[0]} />
         ))}
         <button onClick={() => setModalInfoId("practical" + crypto.randomUUID())}>
           <img src={addIcon} alt="add" />
