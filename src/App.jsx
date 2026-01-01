@@ -8,29 +8,39 @@ function App() {
     nextPracticalId = 0;
 
   const [information, setInformation] = useState({
-    general: [
-      {
-        name: "Name",
+    general: {
+      Name: {
         type: "text",
         value: "",
       },
-      {
-        name: "Email",
+      Email: {
         type: "email",
         value: "",
       },
-      {
-        name: "Phone Number",
+      "Phone Number": {
         type: "tel",
         value: "",
       },
-    ],
+    },
   });
 
-  const [modalInfo, setModalInfo] = useState(null);
+  const [modalInfoId, setModalInfoId] = useState(null);
 
   function handleEdit(id) {
-    setModalInfo(information[id]);
+    setModalInfoId(id);
+    console.log(id);
+  }
+
+  function handleCancel() {
+    setModalInfoId(null);
+  }
+
+  function handleSubmit(id, info) {
+    setModalInfoId(null);
+    setInformation({
+      ...Information,
+      [id]: info
+    })
   }
 
   return (
@@ -56,7 +66,13 @@ function App() {
         .map((item) => (
           <Information info={item[1]} key={item[0]} />
         ))}
-      <Form info={modalInfo} />
+      <Form
+        key={modalInfoId + "reset"}
+        initialInfo={information[modalInfoId]}
+        id={modalInfoId}
+        onCancel={handleCancel}
+        onSubmit={handleSubmit}
+      />
     </>
   );
 }

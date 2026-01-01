@@ -1,30 +1,52 @@
-export default function Form({ info }) {
+import { useState } from "react";
+
+export default function Form({ initialInfo, id, onCancel, onSubmit }) {
+  const [info, setInfo] = useState(initialInfo);
   console.log(info);
+
+  function handleChange(newValue, changedField) {
+    setInfo({
+      ...info,
+      [changedField]: {
+        ...info[changedField],
+        value: newValue,
+      },
+    });
+  }
+
   return (
     <>
       {info ? (
         <div>
-          {info.map((field) => {
-            if (field.type === "text-area") {
+          {Object.entries(info).map(([name, { type, value }]) => {
+            const id = name.replace(" ", "-");
+            if (type === "text-area") {
               return (
                 <>
-                  <label htmlFor={field.name}>{field.name}:</label>
-                  <textarea id={field.name}>{field.value}</textarea>
+                  <label htmlFor={id}>{name}:</label>
+                  <textarea id={id} onChange={(e) => handleChange(e.target.value, name)}>
+                    {value}
+                  </textarea>
                 </>
               );
-            } else if (field.type === "date-range") {
+            } else if (type === "date-range") {
               return null;
             } else {
               return (
                 <>
-                  <label htmlFor={field.name}>{field.name}:</label>
-                  <input type={field.type} id={field.name} value={field.value} />
+                  <label htmlFor={id}>{name}:</label>
+                  <input
+                    type={type}
+                    id={id}
+                    value={value}
+                    onChange={(e) => handleChange(e.target.value, name)}
+                  />
                 </>
               );
             }
           })}
-          <button>Cancel</button>
-          <button>Submit</button>
+          <button onClick={onCancel}>Cancel</button>
+          <button onClick={() => onSubmit(id, info)}>Submit</button>
         </div>
       ) : null}
     </>
