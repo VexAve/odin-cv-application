@@ -9,7 +9,7 @@ const generalInformation = {
 
 function App() {
   return <>
-    <GeneralInformationSection generalInformation={generalInformation} />
+    <GeneralInformationSection generalInformation={generalInformation} isEditing={false} />
   </>;
 }
 
