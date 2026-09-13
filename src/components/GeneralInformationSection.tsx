@@ -5,9 +5,10 @@ interface Props {
   generalInformation: GeneralInformation;
   isEditing: boolean;
   onChange: (e: EventObject, key: string) => void;
+  onClick: () => void;
 }
 
-function GeneralInformationSection({ generalInformation, isEditing, onChange }: Props) {
+function GeneralInformationSection({ generalInformation, isEditing, onChange, onClick }: Props) {
   return <>
     <dl>General Information</dl>
     {Object.entries(generalInformation).map(([key, value]) =>
@@ -21,6 +22,7 @@ function GeneralInformationSection({ generalInformation, isEditing, onChange }: 
         </dd>
       </>
     )}
+    <button onClick={onClick}>{isEditing ? 'Edit' : 'Save'}</button>
   </>;
 }
 
