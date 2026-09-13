@@ -8,18 +8,20 @@ interface Props {
 
 function GeneralInformationSection({ generalInformation, isEditing }: Props) {
   return <>
-    <h1>General Information</h1>
+    <dl>General Information</dl>
     {Object.entries(generalInformation).map(([key, value]) =>
-      <p>
-        {camelToTitle(key)}:
-        {isEditing
-          ? value || 'N/A'
-          : <input
-            type="text"
-            value={value}
-          />
-        }
-      </p>
+      <>
+        <dt>{camelToTitle(key)}:</dt>
+        <dd>
+          {isEditing
+            ? value || 'N/A'
+            : <input
+              type="text"
+              value={value}
+            />
+          }
+        </dd>
+      </>
     )}
   </>;
 }
