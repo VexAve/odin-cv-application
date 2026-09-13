@@ -1,4 +1,4 @@
-import type { GeneralInformation } from "./types";
+import type { GeneralInformation } from "../types";
 
 interface Props {
   generalInformation: GeneralInformation;
