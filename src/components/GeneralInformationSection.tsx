@@ -1,10 +1,10 @@
-import type { GeneralInformation } from "../types";
+import type { EventObject, GeneralInformation } from "../types";
 import { camelToTitle } from "../utils";
 
 interface Props {
   generalInformation: GeneralInformation;
   isEditing: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>, key: string) => void;
+  onChange: (e: EventObject, key: string) => void;
 }
 
 function GeneralInformationSection({ generalInformation, isEditing, onChange }: Props) {
