@@ -1,6 +1,7 @@
 import '../styles/App.css'
 import type { EventObject } from '../types';
 import GeneralInformationSection from './GeneralInformationSection';
+import { useState } from 'react';
 import { useImmer } from 'use-immer';
 
 const generalInformationInitial = {
@@ -11,6 +12,7 @@ const generalInformationInitial = {
 
 function App() {
   const [generalInformation, updateGeneralInformation] = useImmer(generalInformationInitial);
+  const [isEditing, setIsEditing] = useState(false);
 
   function handleChange(e: EventObject, key: string) {
     updateGeneralInformation(draft => {
@@ -18,8 +20,17 @@ function App() {
     })
   }
 
+  function handleClick() {
+    setIsEditing(!isEditing);
+  }
+
   return <>
-    <GeneralInformationSection generalInformation={generalInformation} isEditing={true} onChange={handleChange} />
+    <GeneralInformationSection
+      generalInformation={generalInformation}
+      isEditing={isEditing}
+      onChange={handleChange}
+      onClick={handleClick}
+    />
   </>;
 }
 
