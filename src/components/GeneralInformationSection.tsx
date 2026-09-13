@@ -11,14 +11,11 @@ function GeneralInformationSection({ generalInformation, isEditing }: Props) {
     <dl>General Information</dl>
     {Object.entries(generalInformation).map(([key, value]) =>
       <>
-        <dt>{camelToTitle(key)}:</dt>
+        <dt>{camelToTitle(key)}: </dt>
         <dd>
           {isEditing
-            ? value || 'N/A'
-            : <input
-              type="text"
-              value={value}
-            />
+            ? <input type="text" value={value} />
+            : value || 'N/A'
           }
         </dd>
       </>
