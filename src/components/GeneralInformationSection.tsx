@@ -1,4 +1,5 @@
 import type { GeneralInformation } from "../types";
+import { camelToTitle } from "../utils";
 
 interface Props {
   generalInformation: GeneralInformation;
@@ -10,7 +11,7 @@ function GeneralInformationSection({ generalInformation, isEditing }: Props) {
     <h1>General Information</h1>
     {Object.entries(generalInformation).map(([key, value]) =>
       <p>
-        {key}:
+        {camelToTitle(key)}:
         {isEditing
           ? value || 'N/A'
           : <input
