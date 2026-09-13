@@ -1,5 +1,5 @@
 import './App.css'
-import GeneralInformation from './GeneralInformation';
+import GeneralInformationSection from './GeneralInformationSection';
 
 const generalInformation = {
   name: 'Vex Ave',
@@ -9,7 +9,7 @@ const generalInformation = {
 
 function App() {
   return <>
-    <GeneralInformation generalInformation={generalInformation} />
+    <GeneralInformationSection generalInformation={generalInformation} />
   </>;
 }
 

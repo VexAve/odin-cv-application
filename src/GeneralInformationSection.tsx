@@ -1,4 +1,6 @@
-function GeneralInformation({ generalInformation }) {
+import type { GeneralInformation } from "./types";
+
+function GeneralInformationSection({ generalInformation }: { generalInformation: GeneralInformation }) {
   return <>
    <h1>General Information</h1>
    <p>Name: {generalInformation.name || 'N/A'}</p>
@@ -7,4 +9,4 @@ function GeneralInformation({ generalInformation }) {
   </>;
 }
 
-export default GeneralInformation
+export default GeneralInformationSection
