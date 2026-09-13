@@ -22,7 +22,7 @@ function GeneralInformationSection({ generalInformation, isEditing, onChange, on
         </dd>
       </>
     )}
-    <button onClick={onClick}>{isEditing ? 'Edit' : 'Save'}</button>
+    <button onClick={onClick}>{isEditing ? 'Save' : 'Edit'}</button>
   </>;
 }
 
